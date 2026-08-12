@@ -24,7 +24,7 @@ python -m ipykernel install --user --name=.venv --display-name="WebScraping(venv
 #
 ## 104爬蟲Python使用方法 (Crawler.py)
 ```
-find_jobs(keyword="",area="",ro=0,jobexp=1)
+search_jobs(keyword="",area="",ro=0,jobexp=1)
 在keyword裡輸入要查詢的關鍵字
 
 在area裡輸入要搜尋的地區 如果要搜尋多個區域以,來分隔
@@ -35,6 +35,9 @@ ro 0全部職缺 1正職 2兼職
 jobexp 1= 一年以下 3= 1-3年 5= 3-5年 10= 5-10年 99= 10年以上
 
 上面的參數都可以不打 默認為搜尋工作經驗一年以下，並且正兼職都會列出
+
+這個函式會return兩個變數 filtered_list(工作列表) 以及 total_pages(這個關鍵字有幾頁)
+需要使用兩個變數來接 接完可以無視total_pages 直接看filtered_list即可
 ```
 
 ## 網頁使用方法 (app.py)
