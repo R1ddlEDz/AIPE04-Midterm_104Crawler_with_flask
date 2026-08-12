@@ -43,8 +43,8 @@ def find_jobs(keyword=None, area=None, ro=1, jobexp=1, page=1):
 
     res = requests.get(url, headers=custom_headers, params=job_params)
     data = res.json()
-    # if total_page == 99999999:
-    #     total_page = int(data['metadata']['pagination']['count'])
+    if total_page == 99999999:
+        total_page = int(data['metadata']['pagination']['count'])
 
     jobs = data['data']
     all_jobs.extend(jobs)
@@ -68,7 +68,7 @@ def find_jobs(keyword=None, area=None, ro=1, jobexp=1, page=1):
     for item in filtered_list:
         job_id_list.append(item['link'][-5:])
 
-    return filtered_list, job_id_list
+    return filtered_list, job_id_list, total_page
 
 
 def get_job_deails(job_id):
@@ -118,7 +118,7 @@ def get_job_deails(job_id):
 
 
 def search_jobs(keyword=None, area=None, ro=0, page=1):
-    filtered_list, job_id_list = find_jobs(
+    filtered_list, job_id_list, total_page = find_jobs(
         keyword=keyword,
         area=area,
         ro=ro,
@@ -131,4 +131,4 @@ def search_jobs(keyword=None, area=None, ro=0, page=1):
         details = get_job_deails(job_id)
         job.update(details)
         sleep(random.uniform(0.8, 1.1))
-    return filtered_list
+    return filtered_list, total_page

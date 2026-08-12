@@ -20,32 +20,32 @@
         <br><br>
 
         <label>
-            <input type="checkbox" name="area" value="6001001000" {% if area=='6001001000' %}checked{% endif %}>
+            <input type="checkbox" name="area" value="6001001000" {% if '6001001000' in areas %}checked{% endif %}>
             台北市
         </label>
 
         <label>
-            <input type="checkbox" name="area" value="6001002000" {% if area=='6001002000' %}checked{% endif %}>
+            <input type="checkbox" name="area" value="6001002000" {% if '6001002000' in areas %}checked{% endif %}>
             新北市
         </label>
 
         <label>
-            <input type="checkbox" name="area" value="6001005000" {% if area=='6001005000' %}checked{% endif %}>
+            <input type="checkbox" name="area" value="6001005000" {% if '6001005000' in areas %}checked{% endif %}>
             桃園市
         </label>
 
         <label>
-            <input type="checkbox" name="area" value="6001006000" {% if area=='6001006000' %}checked{% endif %}>
-            新竹市
+            <input type="checkbox" name="area" value="6001006000" {% if '6001006000' in areas %}checked{% endif %}>
+            新竹縣市
         </label>
 
         <label>
-            <input type="checkbox" name="area" value="6001008000" {% if area=='6001008000' %}checked{% endif %}>
+            <input type="checkbox" name="area" value="6001008000" {% if '6001008000' in areas %}checked{% endif %}>
             台中市
         </label>
 
         <label>
-            <input type="checkbox" name="area" value="6001016000" {% if area=='6001016000' %}checked{% endif %}>
+            <input type="checkbox" name="area" value="6001016000" {% if '6001016000' in areas %}checked{% endif %}>
             高雄市
         </label>
 
@@ -80,17 +80,18 @@
 
     <div class="pagination">
 
-        {% if page > 1 %}
+        {% if page > total_pages %}
         <a href="?keyword={{ keyword }}&area={{ area }}&page={{ page - 1 }}">
             上一頁
         </a>
         {% endif %}
 
-        <span>第 {{ page }} 頁</span>
+        <span>第 {{ page }} / {{ total_pages }} 頁</span>
 
-        <a href="?keyword={{ keyword }}&area={{ area }}&page={{ page + 1 }}">
+        {% if page < total_pages %} <a href="?keyword={{ keyword }}&area={{ area }}&page={{ page + 1 }}">
             下一頁
-        </a>
+            </a>
+            {% endif %}
 
     </div>
 

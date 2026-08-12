@@ -8,13 +8,14 @@ app = Flask(__name__)
 def index():
 
     jobs = []
-
+    total_pages = 0
     keyword = request.args.get('keyword', '')
-    area = request.args.get('area', '')
+    areas = request.args.getlist('area')
+    area = ','.join(areas)
     page = request.args.get('page', 1, type=int)
 
     if keyword or area:
-        jobs = search_jobs(
+        jobs, total_pages = search_jobs(
             keyword=keyword,
             area=area,
             page=page
@@ -25,7 +26,9 @@ def index():
         jobs=jobs,
         keyword=keyword,
         area=area,
-        page=page
+        page=page,
+        areas=areas,
+        total_pages=total_pages
     )
 
 
