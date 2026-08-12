@@ -67,6 +67,7 @@
         <p>公司：{{ job.custName }}</p>
         <p>薪水：{{ job.salary }}</p>
         <p>地址：{{ job.addressRegion}} {{job.addressDetail}}</p>
+        <p>應徵人數: {{job.applyCnt}}</p>
         <P>工作內容:<br>{{job.jobDescription}}</P>
         <p>其他條件:<br> {{job.other}}</p>
 
@@ -81,8 +82,7 @@
 
     <div class="pagination">
 
-        {% if page > total_pages %}
-        <a href="?keyword={{ keyword }}&area={{ area }}&page={{ page - 1 }}">
+        {% if page > 1 %} <a href="?keyword={{ keyword }}&area={{ area }}&page={{ page - 1 }}">
             上一頁
         </a>
         {% endif %}
