@@ -93,8 +93,28 @@
             </a>
             {% endif %}
 
+            <!-- 跳轉頁數 -->
+            <select id="pageSelect">
+                {% for p in range(1, total_pages + 1) %}
+                <option value="{{ p }}" {% if p==page %}selected{% endif %}>
+                    第 {{ p }} 頁
+                </option>
+                {% endfor %}
+            </select>
     </div>
+    <script>
+        document.getElementById('pageSelect').addEventListener('change', function () {
 
+            const page = this.value;
+
+            const urlParams = new URLSearchParams(window.location.search);
+
+            urlParams.set('page', page);
+
+            window.location.search = urlParams.toString();
+
+        });
+    </script>
 </body>
 
 </html>
