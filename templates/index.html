@@ -10,7 +10,7 @@
 
     <h1>104 職缺搜尋</h1>
 
-    <form method="POST">
+    <form method="GET">
 
         <label>
             關鍵字：
@@ -78,6 +78,21 @@
 
     {% endfor %}
 
+    <div class="pagination">
+
+        {% if page > 1 %}
+        <a href="?keyword={{ keyword }}&area={{ area }}&page={{ page - 1 }}">
+            上一頁
+        </a>
+        {% endif %}
+
+        <span>第 {{ page }} 頁</span>
+
+        <a href="?keyword={{ keyword }}&area={{ area }}&page={{ page + 1 }}">
+            下一頁
+        </a>
+
+    </div>
 
 </body>
 

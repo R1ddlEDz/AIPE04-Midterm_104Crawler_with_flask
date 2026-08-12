@@ -9,19 +9,23 @@ def index():
 
     jobs = []
 
-    if request.method == 'POST':
+    keyword = request.args.get('keyword', '')
+    area = request.args.get('area', '')
+    page = request.args.get('page', 1, type=int)
 
-        keyword = request.form.get('keyword')
-        area = request.form.get('area')
-
+    if keyword or area:
         jobs = search_jobs(
             keyword=keyword,
-            area=area
+            area=area,
+            page=page
         )
 
     return render_template(
         'index.html',
-        jobs=jobs
+        jobs=jobs,
+        keyword=keyword,
+        area=area,
+        page=page
     )
 
 

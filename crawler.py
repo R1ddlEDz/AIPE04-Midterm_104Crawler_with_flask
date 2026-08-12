@@ -6,7 +6,7 @@ from time import sleep
 import random
 
 
-def find_jobs(keyword=None, area=None, ro=1, jobexp=1):
+def find_jobs(keyword=None, area=None, ro=1, jobexp=1, page=1):
     custom_headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
         "Referer": "https://www.104.com.tw/jobs/search"
@@ -16,7 +16,7 @@ def find_jobs(keyword=None, area=None, ro=1, jobexp=1):
     job_params = {
         "ro": 1,  # 0全部職缺 1正2兼
         "jobexp": 1,  # 工作經驗 1年以下
-        "page": 1,  # 網頁第幾頁
+        "page": page,  # 網頁第幾頁
         # "keyword" : "", #關鍵字
         # "area" : "", #地區 6001001000(台北市) 6001002000 (新北市) 6001005000 (桃園市) 6001006000 (新竹縣市)
     }
@@ -38,20 +38,17 @@ def find_jobs(keyword=None, area=None, ro=1, jobexp=1):
     all_jobs = []
 
     # total_page = int(data['metadata']['pagination']['count'])
-    total_page = 2
+    total_page = 99999999
     page = 1
-    while page < total_page:
-        res = requests.get(url, headers=custom_headers, params=job_params)
-        data = res.json()
-        if total_page == 99999999:
-            total_page = int(data['metadata']['pagination']['count'])
 
-        jobs = data['data']
-        all_jobs.extend(jobs)
-        print(f"正在擷取第{job_params['page']}頁...")
-        page += 1
-        job_params['page'] += 1
-        sleep(random.uniform(0.8, 1.1))
+    res = requests.get(url, headers=custom_headers, params=job_params)
+    data = res.json()
+    # if total_page == 99999999:
+    #     total_page = int(data['metadata']['pagination']['count'])
+
+    jobs = data['data']
+    all_jobs.extend(jobs)
+    print(f"正在擷取第{job_params['page']}頁...")
     print(f"已擷取全部資料，總共獲得{len(all_jobs)}筆資料")
 
     filtered_list = []  # 整理過的資料 包含日期，應徵人數，公司名稱，工作名稱，以及網頁連結
@@ -120,11 +117,12 @@ def get_job_deails(job_id):
     return (job_details_list)
 
 
-def search_jobs(keyword=None, area=None, ro=0):
+def search_jobs(keyword=None, area=None, ro=0, page=1):
     filtered_list, job_id_list = find_jobs(
         keyword=keyword,
         area=area,
-        ro=ro
+        ro=ro,
+        page=page
     )
     count = len(job_id_list)
     for job, job_id in zip(filtered_list, job_id_list):
