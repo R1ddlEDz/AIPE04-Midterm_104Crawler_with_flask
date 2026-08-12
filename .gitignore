@@ -1,2 +1,3 @@
 # --- 虛擬環境 ---
 .venv
+test_jobs.csv

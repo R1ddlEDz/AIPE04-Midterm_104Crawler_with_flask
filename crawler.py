@@ -4,6 +4,7 @@ import re
 from pprint import pprint
 from time import sleep
 import random
+import pandas as pd
 
 
 def find_jobs(keyword=None, area=None, ro=1, jobexp=1, page=1):
@@ -132,3 +133,26 @@ def search_jobs(keyword=None, area=None, ro=0, page=1):
         job.update(details)
         sleep(random.uniform(0.8, 1.1))
     return filtered_list, total_page
+
+
+def save_to_csv(jobs, filename='jobs.csv'):
+    df = pd.DataFrame(jobs)
+    df.to_csv(
+        filename,
+        index=False,
+        encoding='utf-8-sig'
+    )
+
+
+if __name__ == '__main__':
+    jobs, total_pages = search_jobs(
+        keyword='python',
+        area='6001005000',
+        page=1
+    )
+
+    print(f'找到 {len(jobs)} 筆工作')
+
+    save_to_csv(jobs, 'test_jobs.csv')
+
+    print('CSV 儲存完成')
