@@ -14,38 +14,38 @@
 
         <label>
             關鍵字：
-            <input type="text" name="keyword">
+            <input type="text" name="keyword" value="{{ keyword }}">
         </label>
 
         <br><br>
 
         <label>
-            <input type="checkbox" name="area" value="6001001000">
+            <input type="checkbox" name="area" value="6001001000" {% if area=='6001001000' %}checked{% endif %}>
             台北市
         </label>
 
         <label>
-            <input type="checkbox" name="area" value="6001002000">
+            <input type="checkbox" name="area" value="6001002000" {% if area=='6001002000' %}checked{% endif %}>
             新北市
         </label>
 
         <label>
-            <input type="checkbox" name="area" value="6001005000">
+            <input type="checkbox" name="area" value="6001005000" {% if area=='6001005000' %}checked{% endif %}>
             桃園市
         </label>
 
         <label>
-            <input type="checkbox" name="area" value="6001006000">
+            <input type="checkbox" name="area" value="6001006000" {% if area=='6001006000' %}checked{% endif %}>
             新竹市
         </label>
 
         <label>
-            <input type="checkbox" name="area" value="6001008000">
+            <input type="checkbox" name="area" value="6001008000" {% if area=='6001008000' %}checked{% endif %}>
             台中市
         </label>
 
         <label>
-            <input type="checkbox" name="area" value="6001016000">
+            <input type="checkbox" name="area" value="6001016000" {% if area=='6001016000' %}checked{% endif %}>
             高雄市
         </label>
 
