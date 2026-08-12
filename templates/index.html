@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>104 職缺搜尋</title>
+</head>
+
+<body>
+
+    <h1>104 職缺搜尋</h1>
+
+    <form method="POST">
+
+        <label>
+            關鍵字：
+            <input type="text" name="keyword">
+        </label>
+
+        <br><br>
+
+        <label>
+            <input type="checkbox" name="area" value="6001001000">
+            台北市
+        </label>
+
+        <label>
+            <input type="checkbox" name="area" value="6001002000">
+            新北市
+        </label>
+
+        <label>
+            <input type="checkbox" name="area" value="6001005000">
+            桃園市
+        </label>
+
+        <label>
+            <input type="checkbox" name="area" value="6001006000">
+            新竹市
+        </label>
+
+        <label>
+            <input type="checkbox" name="area" value="6001008000">
+            台中市
+        </label>
+
+        <label>
+            <input type="checkbox" name="area" value="6001016000">
+            高雄市
+        </label>
+
+        <br><br>
+
+        <button type="submit">搜尋</button>
+
+    </form>
+
+
+    <hr>
+
+
+    {% for job in jobs %}
+
+    <div>
+        <h2>{{ job.jobName }}</h2>
+
+        <p>公司：{{ job.custName }}</p>
+        <p>薪水：{{ job.salary }}</p>
+        <p>地址：{{ job.addressRegion}} {{job.addressDetail}}</p>
+        <P>工作內容:<br>{{job.jobDescription}}</P>
+
+        <a href="{{ job.link }}" target="_blank">
+            查看職缺
+        </a>
+    </div>
+
+    <hr>
+
+    {% endfor %}
+
+
+</body>
+
+</html>
