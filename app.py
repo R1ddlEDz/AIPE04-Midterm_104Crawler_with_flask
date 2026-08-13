@@ -8,20 +8,27 @@ app = Flask(__name__)
 def index():
 
     jobs = []
+    total_pages = 0
+    keyword = request.args.get('keyword', '')
+    areas = request.args.getlist('area')
+    area = ','.join(areas)
+    page = request.args.get('page', 1, type=int)
 
-    if request.method == 'POST':
-
-        keyword = request.form.get('keyword')
-        area = request.form.get('area')
-
-        jobs = search_jobs(
+    if keyword or area:
+        jobs, total_pages = search_jobs(
             keyword=keyword,
-            area=area
+            area=area,
+            page=page
         )
 
     return render_template(
         'index.html',
-        jobs=jobs
+        jobs=jobs,
+        keyword=keyword,
+        area=area,
+        page=page,
+        areas=areas,
+        total_pages=total_pages
     )
 
 
