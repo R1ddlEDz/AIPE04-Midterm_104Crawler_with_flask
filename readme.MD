@@ -1,4 +1,5 @@
 # 國際資展AIPE04 期中專題
+# 104爬蟲及網站呈現
 ---
 ## .venv虛擬環境建立 (python3.12)
 ```powershell
@@ -59,3 +60,4 @@ save_to_csv(jobs, filename='檔名.csv')
 ## 網頁使用方法 (app.py)
 安裝.venv虛擬環境後(或安裝python3.12) 使用終端機前往該檔案所處資料夾 使用 python app.py 來開啟網頁
 網頁網址為: http://127.0.0.1:5000/
+在終端機使用Ctrl+C來關閉
