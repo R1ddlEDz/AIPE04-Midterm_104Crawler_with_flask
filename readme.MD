@@ -61,3 +61,30 @@ save_to_csv(jobs, filename='檔名.csv')
 安裝.venv虛擬環境後(或安裝python3.12) 使用終端機前往該檔案所處資料夾 使用 python app.py 來開啟網頁
 網頁網址為: http://127.0.0.1:5000/
 在終端機使用Ctrl+C來關閉
+
+## Crawler.py架構
+```
+crawler.py
+│
+├── find_jobs()
+│      ↓
+│   職缺基本資料
+│   ├── jobName     #工作名稱
+│   ├── custName    #公司名稱
+│   ├── link        #工作連結
+│   ├── job_id      #工作ID
+│   └── total_pages #關鍵字總共頁數
+│
+└── get_job_details()
+         ↓
+    職缺詳細資料
+    └─ jobDetail
+          ├── salary      #薪水
+          ├── address     #地址
+          ├── description #工作內容
+          └── condition
+                      ├── workExp  #工作經驗
+                      ├── language #語言要求
+                      ├── major    #科系要求
+                      └── other    #其他要求
+```
